@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 public class userRegistration {
 
 	public static void main(String[] args) {
-		String regex = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$";
+		String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).{8,}$";
 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter a password having atleast one uppercase & one number : ");
+		System.out.println("Enter a password having atleast 1 uppercase, 1 number & 1 special character  : ");
 		String password = sc.nextLine();
 
 		Pattern pattern = Pattern.compile(regex);
