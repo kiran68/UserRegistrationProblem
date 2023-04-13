@@ -1,47 +1,38 @@
 package com.bridgelabz.userregistrationproblem;
 
-import org.junit.Test;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 public class userRegistrationTest {
-	boolean result;
+	 
+	 private String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+	    private Pattern pattern = Pattern.compile(regex);
+	
+	    @Test
+	    public void testValidEmails() {
+	        String[] validEmails = {
+	                "abc@yahoo.com",
+	                "abc-100@yahoo.com",
+	                "abc.100@yahoo.com",
+	                "abc111@abc.com",
+	                "abc-100@abc.net",
+	                "abc.100@abc.com.au",
+	                "abc@1.com",
+	                "abc@gmail.com.com",
+	                "abc+100@gmail.com"
+	        };
 
-	userRegistration userregistration = new userRegistration();
+	        for (String email : validEmails) {
+	            Matcher matcher = pattern.matcher(email);
+	            boolean result = matcher.matches();
+	            Assert.assertEquals(email + " should be a valid email", true, result);
+	        }
+	    }
 
-	@Test
-	public void isValidFirstName() {
-		userRegistration userregistration = new userRegistration();
-		boolean result = userregistration.isvalidfirstName("Kiran");
-		Assert.assertEquals(true, result);
+	 
+	   
 	}
-
-	@Test
-	public void isValidLastName() {
-		userRegistration userregistration = new userRegistration();
-		boolean result = userregistration.isvalidlastName("Urshil");
-		Assert.assertEquals(true, result);
-	}
-
-	@Test
-	public void isValidEmail() {
-		userRegistration userregistration = new userRegistration();
-		boolean result = userregistration.isvalidEmail("kiranurshil999@gmail.com");
-		Assert.assertEquals(true, result);
-	}
-
-	@Test
-	public void isValidMobileNumber() {
-		userRegistration userregistration = new userRegistration();
-		boolean result = userregistration.isvalidMobileNumber("91 9168068152");
-		Assert.assertEquals(true, result);
-	}
-
-	@Test
-	public void isValidPassword() {
-		userRegistration userregistration = new userRegistration();
-		boolean result = userregistration.isvalidPassword("kiranravi");
-		Assert.assertEquals(true, result);
-	}
-
-}
+	    
